@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+    <body>
+        <div id="root"></div>
+    </body>
+    <script src="https://unpkg.com/react@17.0.2/umd/react.production.min.js"></script>
+    <script src="https://unpkg.com/react-dom@17.0.2/umd/react-dom.production.min.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script> <!-- babel 변환기 설치 -->
+    <script type="text/babel">
+       const root=document.getElementById("root"); // root에 넣기위해 root를 가져온다.
+       function Title(){
+        return (
+            <h3 id="title" onMouseEnter={() =>console.log("mouse enter")}>
+                Hello I'm a title
+            </h3>
+        );
+       } // 아래 Button 함수로 바꾼 ()=> 방식이 Title처럼 함수로 만들어서 return해주는 것이다.
+       const Button= ()=> (<button style={{backgroundColor:"tomato",}} onClick={()=> console.log("클릭될때마다 호출될 function")}>Click me</button>); // jsx를 사용.
+       // 컴포넌트 첫번째는 무조건 대문자여야한다. 직접 만든 요소는 전부 대문자로 시작해야하고, 소문자면 html요소로 받아들인다.
+       const Container= ()=> ( // Title이나 Button을 포함시키고 있지 않기 때문에 Title,Button을 function함수로 만들어준다 ()=>
+            <div>
+                <Title /> 
+                <Button />
+            </div>
+        ); 
+       /* <h3 id="title" onMouseEnter={() =>console.log("mouse enter")}> // 위에 <Title />이 길었던 식을 간단하게 줄인것이다.
+                Hello I'm a title
+          </h3> */ 
+       ReactDOM.render(<Container />,root); // render은 React element를 가지고 HTML로 배치한다는것. 사용자에게 보여준다. root를 위에서 가져왔기 때문에 btn을 root안에 render해줘라.
+    </script>
+</html>
